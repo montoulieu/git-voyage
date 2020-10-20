@@ -1,0 +1,26 @@
+@tailwind base;
+
+@tailwind components;
+
+@tailwind utilities;
+
+.code {
+  @apply bg-gray-100 rounded-sm p-2 font-mono;
+}
+
+.card {
+  @apply m-4 p-5 text-left no-underline rounded-lg border border-gray-200 transition-colors duration-200 block;
+
+  h3 {
+    @apply text-2xl mb-4 font-bold;
+  }
+
+  p {
+    @apply text-xl leading-normal;
+  }
+
+  &:hover {
+    @apply text-blue-600 border-blue-600;
+  }
+}
+
