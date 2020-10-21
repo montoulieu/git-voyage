@@ -23,7 +23,7 @@ function RepoList() {
   };
 
   useEffect(() => {
-    if (profile.repos_url) {
+    if (profile?.repos_url) {
       getRepos();
     }
   }, [profile]);
