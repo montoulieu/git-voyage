@@ -11,10 +11,11 @@ export default function Page() {
 
   useEffect(() => {
     if (session?.profile) {
+      console.log('storing');
       window.localStorage.setItem('profile', JSON.stringify(session.profile));
     }
     setProfileData(JSON.parse(window.localStorage.getItem('profile')));
-  }, []);
+  }, [session]);
 
   return (
     <>
@@ -30,8 +31,9 @@ export default function Page() {
             </button>
 
             <button
-              onClick={() => getRepos()}
+              onClick={() => console.log}
               className="nav-button"
+              type="button"
             >
               Get Repos
             </button>
@@ -41,7 +43,13 @@ export default function Page() {
             {session.user.name.split(' ')[0]}
             {'!'}
             <br />
-            <button onClick={signOut}>Sign out</button>
+            <button
+              onClick={signOut}
+              type="button"
+            >
+              Sign out
+
+            </button>
           </div>
         </>
         )}
@@ -51,7 +59,13 @@ export default function Page() {
           Not signed in
           {' '}
           <br />
-          <button onClick={signIn}>Sign in</button>
+          <button
+            onClick={signIn}
+            type="button"
+          >
+            Sign in
+
+          </button>
         </div>
         )}
       </header>
@@ -65,6 +79,7 @@ export default function Page() {
             <button
               onClick={signIn}
               className="bg-gray-700 p-3 mx-auto w-64"
+              type="button"
             >
               Sign in
             </button>
