@@ -47,7 +47,7 @@ function RepoList() {
               {repo.description}
             </div>
           </a>
-          <span className="mt-auto ml-auto font-black text-lime-400">{repo.stargazers_count}</span>
+          <span className="mt-auto ml-auto font-black text-green-400">{repo.stargazers_count}</span>
         </li>
       ))}
     </ul>
