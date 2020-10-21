@@ -1,59 +1,45 @@
 import { signIn, signOut, useSession } from 'next-auth/client';
-import axios from 'axios';
 import { useEffect } from 'react';
+import Link from 'next/link';
 import useGithubStore from '../hooks/useGithubStore';
+import RepoList from '../components/RepoList';
 
 export default function Page() {
   const [session, loading] = useSession();
-  let profile;
-  const repos = useGithubStore((state) => state.repos);
-  const setRepoData = useGithubStore((state) => state.setRepoData);
-
-  const getRepos = () => {
-    axios.get(`${profile.repos_url}?per_page=200`)
-      .then((response) => {
-        console.log(response.data);
-        setRepoData(response.data);
-      }).catch((error) => {
-        console.log('Error fetching user', error);
-      });
-  };
+  const profile = useGithubStore((state) => state.profile);
+  const setProfileData = useGithubStore((state) => state.setProfileData);
 
   useEffect(() => {
-    console.log(session);
     if (session?.profile) {
       window.localStorage.setItem('profile', JSON.stringify(session.profile));
     }
-    profile = JSON.parse(window.localStorage.getItem('profile'));
-    if (profile) {
-      getRepos();
-    }
+    setProfileData(JSON.parse(window.localStorage.getItem('profile')));
   }, []);
 
   return (
     <>
-      <header className="flex items-center">
+      <header className="fixed w-full flex items-center bg-gray-900 text-white p-3">
         {session && (
         <>
           <div className="">
             <button
               onClick={() => console.log(profile)}
-              className="p-3 bg-blue-300"
+              className="nav-button"
             >
               Log
             </button>
+
             <button
               onClick={() => getRepos()}
-              className="p-3 bg-blue-300"
+              className="nav-button"
             >
               Get Repos
             </button>
           </div>
           <div className="ml-auto text-right">
-            Signed in as
-            {' '}
-            {session.user.email}
-            {' '}
+            {'Hello '}
+            {session.user.name.split(' ')[0]}
+            {'!'}
             <br />
             <button onClick={signOut}>Sign out</button>
           </div>
@@ -69,28 +55,22 @@ export default function Page() {
         </div>
         )}
       </header>
-      <div>
-        {repos
-          && (
-          <ul className="grid grid-cols-3 gap-3">
-            {repos.map((repo) => (
-              <li
-                key={repo.node_id}
-                className="flex"
-              >
-                <a
-                  href={repo.html_url}
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  {repo.name}
-                </a>
-                <span className="ml-3 font-bold">{repo.stargazers_count}</span>
-              </li>
-            ))}
-          </ul>
-          )}
-      </div>
+      <main className="p-3 pt-24 flex flex-col justify-center min-h-screen">
+        {session && (
+          <RepoList />
+        )}
+        {!session && (
+          <>
+            <h1 className="text-3xl text-center pb-3">It appears you aren't logged in!</h1>
+            <button
+              onClick={signIn}
+              className="bg-gray-700 p-3 mx-auto w-64"
+            >
+              Sign in
+            </button>
+          </>
+        )}
+      </main>
     </>
   );
 }
