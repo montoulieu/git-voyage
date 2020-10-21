@@ -41,7 +41,7 @@ function RepoList() {
   if (!repos) { return <></>; }
 
   return (
-    <ul className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3">
+    <ul className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-5">
       {filteredRepos.map((repo) => (
         <li
           key={repo.node_id}
@@ -53,13 +53,17 @@ function RepoList() {
             rel="noreferrer"
             className="block"
           >
-            <span className="text-xl font-bold mb-2 inline-block">{repo.name}</span>
+            <span className="text-xl font-bold mb-2 inline-block text-white">{repo.name}</span>
             <div className="text-gray-100 font-light">
               {repo.description}
             </div>
           </a>
           <button className="btn-love">♥</button>
-          <span className="absolute bottom-0 right-0 border border-yellow-200 rounded-lg rounded-tr-none rounded-bl-none px-3 text-yellow-300 text-center mt-auto ml-auto font-bold">{repo.stargazers_count}</span>
+          <span className="absolute bottom-0 right-0 border border-yellow-200 rounded-lg rounded-tr-none rounded-bl-none px-3 text-yellow-300 text-center mt-auto ml-auto font-bold">
+            ★
+            {' '}
+            {repo.stargazers_count}
+          </span>
         </li>
       ))}
     </ul>
