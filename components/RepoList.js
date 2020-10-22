@@ -1,6 +1,8 @@
 import { useEffect } from 'react';
 import axios from 'axios';
+
 import useGithubStore from '../hooks/useGithubStore';
+import RepoCard from './RepoCard';
 
 function RepoList() {
   const repos = useGithubStore((state) => state.repos);
@@ -25,6 +27,7 @@ function RepoList() {
   const getRepos = () => {
     axios.get(`${profile.repos_url}?per_page=500`)
       .then((response) => {
+        console.log(response.data);
         setRepoData(response.data);
         getTotalStarCount(response.data);
       }).catch((error) => {
@@ -36,35 +39,17 @@ function RepoList() {
     if (profile?.repos_url) {
       getRepos();
     }
-  }, [profile]);
+  }, []);
 
   if (!repos) { return <></>; }
 
   return (
-    <ul className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-5">
+    <ul className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
       {filteredRepos.map((repo) => (
-        <li
+        <RepoCard
+          repo={repo}
           key={repo.node_id}
-          className="flex border bg-gray-800 border-gray-700 hover:bg-gray-700 transition-colors duration-200 rounded-xl shadow-lg p-5 relative"
-        >
-          <a
-            href={repo.html_url}
-            target="_blank"
-            rel="noreferrer"
-            className="block"
-          >
-            <span className="text-xl font-bold mb-2 inline-block text-white">{repo.name}</span>
-            <div className="text-gray-100 font-light">
-              {repo.description}
-            </div>
-          </a>
-          <button className="btn-love">♥</button>
-          <span className="absolute bottom-0 right-0 border border-yellow-200 rounded-lg rounded-tr-none rounded-bl-none px-3 text-yellow-300 text-center mt-auto ml-auto font-bold">
-            ★
-            {' '}
-            {repo.stargazers_count}
-          </span>
-        </li>
+        />
       ))}
     </ul>
   );

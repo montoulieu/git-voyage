@@ -9,6 +9,7 @@
     "postbuild": "next-on-netlify"
   },
   "dependencies": {
+    "@primer/octicons-react": "^11.0.0",
     "axios": "^0.20.0",
     "next": "^9.5.5",
     "next-auth": "^3.1.0",

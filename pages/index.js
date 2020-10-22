@@ -1,18 +1,20 @@
 import { signIn, signOut, useSession } from 'next-auth/client';
 import { useEffect } from 'react';
-import Link from 'next/link';
+// import Link from 'next/link';
+import Head from 'next/head';
 import useGithubStore from '../hooks/useGithubStore';
 import RepoList from '../components/RepoList';
+import DevStats from '../components/DevStats';
 
 export default function Page() {
   const [session, loading] = useSession();
   const profile = useGithubStore((state) => state.profile);
-  const totalStars = useGithubStore((state) => state.totalStars);
+  const repos = useGithubStore((state) => state.repos);
+
   const setProfileData = useGithubStore((state) => state.setProfileData);
 
   useEffect(() => {
     if (session?.profile) {
-      console.log('storing');
       window.localStorage.setItem('profile', JSON.stringify(session.profile));
     }
     setProfileData(JSON.parse(window.localStorage.getItem('profile')));
@@ -25,6 +27,9 @@ export default function Page() {
 
   return (
     <>
+      <Head>
+        <title>Dev Accolades</title>
+      </Head>
       <header className="fixed w-full bg-gray-900 border-b border-gray-800 text-white p-3 z-10">
         <div className="container flex items-center mx-auto">
           {session && (
@@ -33,16 +38,17 @@ export default function Page() {
               <button
                 onClick={() => console.log(profile)}
                 className="btn-nav-item"
+                type="button"
               >
-                Log
+                Log Profile
               </button>
 
               <button
-                onClick={() => console.log}
+                onClick={() => console.log(repos)}
                 className="btn-nav-item"
                 type="button"
               >
-                Get Repos
+                Log Repos
               </button>
             </div>
 
@@ -91,80 +97,7 @@ export default function Page() {
       <main className="container mx-auto p-3 pt-24 flex flex-col justify-center min-h-screen">
         {session && (
           <>
-            <div className="grid lg:grid-cols-3 pt-6 pb-12">
-              <div
-                className="p-3 mx-auto w-72 font-bold"
-              >
-                <h5 className="text-3xl flex">
-                  Followers:
-                  {' '}
-                  <span className="ml-auto">{profile?.followers}</span>
-                </h5>
-                <h5 className="text-3xl flex">
-                  Collaborators:
-                  {' '}
-                  <span className="ml-auto">{profile?.collaborators}</span>
-                </h5>
-                <h5 className="text-3xl flex">
-                  Public Repos:
-                  {' '}
-                  <span className="ml-auto">{profile?.public_repos}</span>
-                </h5>
-                <h5 className="text-3xl flex">
-                  Total Stars:
-                  {' '}
-                  <span className="ml-auto">{totalStars}</span>
-                </h5>
-              </div>
-              <div
-                className="p-3 mx-auto w-72 font-bold"
-              >
-                <h5 className="text-3xl flex">
-                  Followers:
-                  {' '}
-                  <span className="ml-auto">{profile?.followers}</span>
-                </h5>
-                <h5 className="text-3xl flex">
-                  Collaborators:
-                  {' '}
-                  <span className="ml-auto">{profile?.collaborators}</span>
-                </h5>
-                <h5 className="text-3xl flex">
-                  Public Repos:
-                  {' '}
-                  <span className="ml-auto">{profile?.public_repos}</span>
-                </h5>
-                <h5 className="text-3xl flex">
-                  Total Stars:
-                  {' '}
-                  <span className="ml-auto">{totalStars}</span>
-                </h5>
-              </div>
-              <div
-                className="p-3 mx-auto w-72 font-bold"
-              >
-                <h5 className="text-3xl flex">
-                  Followers:
-                  {' '}
-                  <span className="ml-auto">{profile?.followers}</span>
-                </h5>
-                <h5 className="text-3xl flex">
-                  Collaborators:
-                  {' '}
-                  <span className="ml-auto">{profile?.collaborators}</span>
-                </h5>
-                <h5 className="text-3xl flex">
-                  Public Repos:
-                  {' '}
-                  <span className="ml-auto">{profile?.public_repos}</span>
-                </h5>
-                <h5 className="text-3xl flex">
-                  Total Stars:
-                  {' '}
-                  <span className="ml-auto">{totalStars}</span>
-                </h5>
-              </div>
-            </div>
+            <DevStats />
             <RepoList />
           </>
         )}
