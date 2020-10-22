@@ -32,7 +32,7 @@ function RepoList() {
     let commitCount = 0;
 
     await repos.forEach((repo) => {
-      axios.get(repo.commits_url.slice(0, -6), {
+      axios.get(`${repo.commits_url.slice(0, -6)}?per_page=500`, {
         headers: {
           Authorization: `token ${session.token.account.accessToken}`,
         },
