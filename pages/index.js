@@ -94,7 +94,7 @@ export default function Page() {
         </div>
       </header>
 
-      <main className="container mx-auto p-3 pt-24 flex flex-col justify-center min-h-screen">
+      <main className="container mx-auto p-3 pt-24">
         {(session && !loading) && (
           <>
             <DevStats />
@@ -102,7 +102,7 @@ export default function Page() {
           </>
         )}
         {(!session && !loading) && (
-          <>
+          <div className="flex flex-col justify-center min-h-screen">
             <h1 className="text-3xl text-center pb-3">It appears you aren't logged in!</h1>
             <button
               onClick={signIn}
@@ -111,7 +111,7 @@ export default function Page() {
             >
               Sign in
             </button>
-          </>
+          </div>
         )}
       </main>
     </>
