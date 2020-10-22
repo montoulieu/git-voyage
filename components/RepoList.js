@@ -38,9 +38,7 @@ function RepoList() {
         },
       })
         .then((response) => {
-          console.log(response.data.length)
           commitCount += response.data.length;
-          console.log(response.data);
           addToTotalCommits(response.data.length);
         });
     });
@@ -53,7 +51,6 @@ function RepoList() {
       },
     })
       .then((response) => {
-        console.log(response.data);
         setRepoData(response.data);
         getTotalStarCount(response.data);
         if (totalCommits === 0) {
@@ -65,7 +62,6 @@ function RepoList() {
   };
 
   useEffect(() => {
-    console.log(session);
     if (profile?.repos_url) {
       getRepos();
     }

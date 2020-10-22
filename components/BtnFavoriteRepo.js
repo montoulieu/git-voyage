@@ -3,7 +3,7 @@ import { HeartFillIcon } from '@primer/octicons-react';
 
 function BtnFavoriteRepo(props) {
   const { repoId } = props;
-  const [localFavoriteRepos, setLocalFavoriteRepos] = useState(JSON.parse(window.localStorage.getItem('favoriteRepos')));
+  const [localFavoriteRepos, setLocalFavoriteRepos] = useState(JSON.parse(window.localStorage.getItem('favoriteRepos')) || []);
 
   const storeFavorite = () => {
     const favoriteRepos = JSON.parse(window.localStorage.getItem('favoriteRepos')) || [];
@@ -23,7 +23,6 @@ function BtnFavoriteRepo(props) {
         window.localStorage.setItem('favoriteRepos', JSON.stringify(favoriteRepos));
         setLocalFavoriteRepos(favoriteRepos);
       }
-      console.log(localFavoriteRepos);
     }
   };
 
