@@ -16,7 +16,6 @@ const options = {
   callbacks: {
     signIn: async (user, account, profile) => {
       githubProfile = profile;
-      console.log(oAuthToken);
     },
     session: async (session, sessionToken) => {
       if (!session.profile) {
@@ -31,7 +30,6 @@ const options = {
         token.profile = profile;
         token.account = account;
       }
-      console.log(token);
       return Promise.resolve(token);
     },
   },
