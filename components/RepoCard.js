@@ -16,7 +16,7 @@ function RepoCard(props) {
         rel="noreferrer"
         className="block"
       >
-        <span className="text-xl font-bold mb-2 inline-block text-white">{repo.name}</span>
+        <span className="text-2xl font-bold mb-2 inline-block text-white">{repo.name}</span>
         <div className="text-gray-100 font-light mb-5">
           {repo.description}
         </div>
@@ -24,14 +24,14 @@ function RepoCard(props) {
 
       <BtnFavoriteRepo repoId={repo.node_id} />
 
-      <div className="absolute bottom-0 right-0 text-center mt-auto ml-auto font-bold">
-        <span className="text-yellow-300 border border-yellow-200 px-3 rounded-tl-lg">
-          <StarFillIcon />
+      <div className="absolute bottom-0 right-0 text-center mt-auto ml-auto font-bold h-7 flex">
+        <span className="text-yellow-300 border border-yellow-200 px-3 rounded-tl-lg flex items-center">
+          <StarFillIcon className="mr-1" />
           {' '}
           {repo.stargazers_count}
         </span>
-        <span className="text-green-300 border border-green-200 px-3 rounded-br-lg border-l-0">
-          <RepoForkedIcon />
+        <span className="text-green-300 border border-green-200 px-3 rounded-br-lg border-l-0 flex items-center">
+          <RepoForkedIcon className="mr-1" />
           {repo.forks}
         </span>
       </div>
