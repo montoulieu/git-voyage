@@ -95,13 +95,13 @@ export default function Page() {
       </header>
 
       <main className="container mx-auto p-3 pt-24 flex flex-col justify-center min-h-screen">
-        {session && (
+        {(session && !loading) && (
           <>
             <DevStats />
             <RepoList />
           </>
         )}
-        {!session && (
+        {(!session && !loading) && (
           <>
             <h1 className="text-3xl text-center pb-3">It appears you aren't logged in!</h1>
             <button
