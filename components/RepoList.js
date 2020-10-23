@@ -45,7 +45,7 @@ function RepoList() {
   };
 
   const getRepos = () => {
-    axios.get(`${profile.repos_url}?per_page=500`, {
+    axios.get(`${session.token.profile.repos_url}?per_page=500`, {
       headers: {
         Authorization: `token ${session.token.account.accessToken}`,
       },
@@ -62,7 +62,7 @@ function RepoList() {
   };
 
   useEffect(() => {
-    if (profile?.repos_url) {
+    if (session.token.profile.repos_url) {
       getRepos();
     }
   }, []);

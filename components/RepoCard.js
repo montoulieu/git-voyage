@@ -41,9 +41,7 @@ function RepoCard(props) {
         rel="noreferrer"
         className="absolute bottom-0 left-0 border border-blue-400 rounded-lg rounded-tl-none rounded-br-none px-3 text-blue-300 text-center mt-auto ml-auto font-bold"
       >
-
         <GlobeIcon />
-
       </a>
     </li>
   );
