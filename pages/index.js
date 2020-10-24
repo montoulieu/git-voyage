@@ -33,13 +33,12 @@ export default function Page() {
 
       {(session && !loading) && (
         <main className="container mx-auto p-3 pt-16 md:pt-24">
-          <>
-            <DevStats />
-            <FavoriteList />
-            <RepoList />
-          </>
+          <DevStats />
+          <FavoriteList />
+          <RepoList />
         </main>
       )}
+
       {(!session && !loading) && (
         <div className="flex flex-col justify-center min-h-screen">
           <h1 className="text-3xl text-center pb-3">Sign in to view your git accolades.</h1>
