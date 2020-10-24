@@ -5,14 +5,17 @@ function DevStats() {
   const [session, loading] = useSession();
 
   const totalStars = useGithubStore((state) => state.totalStars);
+  const totalIssues = useGithubStore((state) => state.totalIssues);
+  const totalWatchers = useGithubStore((state) => state.totalWatchers);
+  const totalForkers = useGithubStore((state) => state.totalForkers);
   const totalCommits = useGithubStore((state) => state.totalCommits);
 
   return (
-    <div className="grid lg:grid-cols-3 pt-6 pb-12">
+    <div className="grid md:grid-cols-2 py-6 md:pb-12">
       <div
-        className="p-3 mx-auto w-72 font-bold"
+        className="mx-auto w-full sm:w-72 font-bold mb-5 sm:mb-0"
       >
-        <h5 className="text-3xl font-bolder text-red-500">
+        <h5 className="text-4xl font-bolder text-blue-500 mb-3">
           People
         </h5>
         <h5 className="text-2xl font-semibold flex">
@@ -26,26 +29,27 @@ function DevStats() {
           <span className="ml-auto">{session.token.profile.collaborators}</span>
         </h5>
         <h5 className="text-2xl font-semibold flex">
-          Public Repos
+          Watchers
           {' '}
-          <span className="ml-auto">{session.token.profile.public_repos}</span>
+          <span className="ml-auto">{totalWatchers}</span>
         </h5>
+
         <h5 className="text-2xl font-semibold flex">
-          Private Repos
+          Forkers
           {' '}
-          <span className="ml-auto">{session.token.profile.owned_private_repos}</span>
+          <span className="ml-auto">{totalForkers}</span>
         </h5>
       </div>
       <div
-        className="p-3 mx-auto w-72 font-bold"
+        className="mx-auto w-full sm:w-72 font-bold"
       >
-        <h5 className="text-3xl font-bolder text-green-400">
+        <h5 className="text-4xl font-bolder text-green-400 mb-3">
           Total
         </h5>
         <h5 className="text-2xl font-semibold flex">
-          Stars
+          Repos
           {' '}
-          <span className="ml-auto">{totalStars}</span>
+          <span className="ml-auto">{session.token.profile.public_repos + session.token.profile.owned_private_repos}</span>
         </h5>
         <h5 className="text-2xl font-semibold flex">
           Commits
@@ -53,17 +57,18 @@ function DevStats() {
           <span className="ml-auto">{totalCommits}</span>
         </h5>
         <h5 className="text-2xl font-semibold flex">
-          Collaborators:
+          Stars
           {' '}
-          <span className="ml-auto">{session.token.profile.collaborators}</span>
+          <span className="ml-auto">{totalStars}</span>
         </h5>
         <h5 className="text-2xl font-semibold flex">
-          Public Repos:
+          Issues
           {' '}
-          <span className="ml-auto">{session.token.profile.public_repos}</span>
+          <span className="ml-auto">{totalIssues}</span>
         </h5>
+
       </div>
-      <div
+      {/* <div
         className="p-3 mx-auto w-72 font-bold"
       >
         <h5 className="text-3xl font-bolder text-yellow-400">
@@ -89,7 +94,7 @@ function DevStats() {
           {' '}
           <span className="ml-auto">{totalStars}</span>
         </h5>
-      </div>
+      </div> */}
     </div>
   );
 }

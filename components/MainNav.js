@@ -14,7 +14,7 @@ function MainNav() {
       <div className="container flex items-center mx-auto">
         {session && (
           <>
-            <div className="mr-auto">
+            <div className="mr-auto hidden sm:block">
               <button
                 onClick={() => console.log(session)}
                 className="btn-nav-item font-light"

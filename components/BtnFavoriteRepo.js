@@ -1,36 +1,34 @@
-import { useState } from 'react';
 import { HeartFillIcon } from '@primer/octicons-react';
+import useGithubStore from '../hooks/useGithubStore';
 
 function BtnFavoriteRepo(props) {
+  const favorites = useGithubStore((state) => state.favorites);
+  const setFavorites = useGithubStore((state) => state.setFavorites);
+
   const { repoId } = props;
-  const [localFavoriteRepos, setLocalFavoriteRepos] = useState(JSON.parse(window.localStorage.getItem('favoriteRepos')) || []);
 
-  const storeFavorite = () => {
-    const favoriteRepos = JSON.parse(window.localStorage.getItem('favoriteRepos')) || [];
-    let filteredRepoIds;
+  const clickFavorite = () => {
+    // eslint-disable-next-line prefer-const
+    let favoriteRepos = [];
 
-    if (favoriteRepos) {
-      if (!favoriteRepos.includes(repoId)) {
-        favoriteRepos.push(repoId);
-      } else {
-        filteredRepoIds = favoriteRepos.filter((e) => e !== repoId);
-      }
-
-      if (filteredRepoIds) {
-        window.localStorage.setItem('favoriteRepos', JSON.stringify(filteredRepoIds));
-        setLocalFavoriteRepos(filteredRepoIds);
-      } else {
-        window.localStorage.setItem('favoriteRepos', JSON.stringify(favoriteRepos));
-        setLocalFavoriteRepos(favoriteRepos);
-      }
+    if (favorites.includes(repoId)) {
+      favoriteRepos = favorites.filter((e) => e !== repoId);
+      console.log(`Removing -${favoriteRepos}`);
+    } else {
+      favoriteRepos = favorites;
+      favoriteRepos.push(repoId);
+      console.log(`Adding -${favoriteRepos}`);
     }
+    setFavorites(favoriteRepos);
+    console.log(favorites);
+    window.localStorage.setItem('favoriteRepos', JSON.stringify(favoriteRepos));
   };
 
   return (
     <button
-      className={`btn-love ${localFavoriteRepos.includes(repoId) ? 'bg-red-400 text-white' : 'text-red-400'}`}
+      className={`btn-love ${favorites.includes(repoId) ? 'bg-red-500 text-white' : 'text-red-400'}`}
       type="button"
-      onClick={() => storeFavorite()}
+      onClick={() => clickFavorite()}
     >
       <HeartFillIcon size="small" />
     </button>

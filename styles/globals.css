@@ -18,8 +18,4 @@ body {
 
 .btn-love {
   @apply absolute right-0 top-0 p-1 rounded-tl-none rounded-br-none border border-red-400 rounded-lg h-6 w-6 flex items-center justify-center text-xs;
-
-  &:hover {
-    @apply bg-red-400 text-white;
-  }
 }
