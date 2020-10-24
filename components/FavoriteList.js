@@ -9,6 +9,8 @@ function FavoriteList() {
     .sort((a, b) => a.stargazers_count < b.stargazers_count)
     .filter((repo) => favorites.includes(repo.node_id));
 
+  if (!filteredRepos) { return <></>; }
+
   return (
     <>
       <h2 className="text-red-500 text-4xl font-bold mb-4">Favorites</h2>
