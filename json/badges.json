@@ -1,0 +1,51 @@
+[
+  {
+    "id": "first-follower",
+    "label": "First Follower",
+    "emoji": "🤝",
+    "requirement": {
+      "type": "session",
+      "path": "token.profile.followers",
+      "value": 1
+    }
+  },
+  {
+    "id": "first-10-followers",
+    "label": "First 10 Followers",
+    "emoji": "🙌",
+    "requirement": {
+      "type": "session",
+      "path": "token.profile.followers",
+      "value": 10
+    }
+  },
+  {
+    "id": "first-collab",
+    "label": "First Collaborator",
+    "emoji": "👯‍♂️",
+    "requirement": {
+      "type": "session",
+      "path": "token.profile.collaborators",
+      "value": 1
+    }
+  },
+  {
+    "id": "first-5-collab",
+    "label": "First 5 Collaborators",
+    "emoji": "🥂",
+    "requirement": {
+      "type": "session",
+      "path": "token.profile.collaborators",
+      "value": 5
+    }
+  },
+  {
+    "id": "first-commit",
+    "label": "First Commit",
+    "emoji": "☝️",
+    "requirement": {
+      "type": "commit",
+      "value": 1
+    }
+  }
+]

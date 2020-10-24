@@ -17,5 +17,20 @@ body {
 }
 
 .btn-love {
-  @apply absolute right-0 top-0 p-1 rounded-tl-none rounded-br-none border border-red-400 rounded-lg h-6 w-6 flex items-center justify-center text-xs;
+  @apply absolute right-0 top-0;
+  @apply p-2 px-3;
+  @apply border border-red-400 rounded-3xl rounded-tl-none rounded-br-none;
+  @apply flex items-center justify-center;
+  @apply text-xs;
+}
+
+.bg-galaxy {
+  background-image: url('/bg/galaxy.jpg');
+  background-blend-mode: multiply;
+  background-color: #2c2c2c;
+  @apply bg-cover;
+}
+
+.text-shadow {
+  text-shadow: 0 3px 4px rgba(0,0,0,0.35);
 }

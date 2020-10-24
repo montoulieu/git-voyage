@@ -1,4 +1,4 @@
-import RepoCard from './RepoCard';
+import RepoCard from './repo-card/RepoCard';
 import useGithubStore from '../hooks/useGithubStore';
 
 function FavoriteList() {
@@ -13,7 +13,7 @@ function FavoriteList() {
 
   return (
     <>
-      <h2 className="text-red-500 text-4xl font-bold mb-4">Favorites</h2>
+      <h2 className="text-red-500 text-3xl font-bold mb-4">Favorite Repos</h2>
       <ul className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 mb-8">
         {filteredRepos.map((repo) => (
           <RepoCard

@@ -1,9 +1,6 @@
 import NextAuth from 'next-auth';
 import Providers from 'next-auth/providers';
 
-let githubProfile;
-let oAuthToken;
-
 const options = {
   // Configure one or more authentication providers
   providers: [
@@ -14,17 +11,11 @@ const options = {
     // ...add more providers here
   ],
   callbacks: {
-    signIn: async (user, account, profile) => {
-      githubProfile = profile;
-    },
     session: async (session, sessionToken) => {
-      if (!session.profile) {
-        session.profile = githubProfile;
-      }
       session.token = sessionToken;
       return Promise.resolve(session);
     },
-    jwt: async (token, user, account, profile, isNewUser) => {
+    jwt: async (token, user, account, profile) => {
       const isSignIn = !!(user);
       if (isSignIn) {
         token.profile = profile;
@@ -32,6 +23,9 @@ const options = {
       }
       return Promise.resolve(token);
     },
+  },
+  pages: {
+    signIn: '/auth/signin',
   },
   session: {
     jwt: true,

@@ -1,5 +1,6 @@
 import { useSession } from 'next-auth/client';
 import useGithubStore from '../hooks/useGithubStore';
+import BadgeArea from './badge/BadgeArea';
 
 function DevStats() {
   const [session, loading] = useSession();
@@ -10,91 +11,69 @@ function DevStats() {
   const totalForkers = useGithubStore((state) => state.totalForkers);
   const totalCommits = useGithubStore((state) => state.totalCommits);
 
+  const peopleStats = [
+    { label: 'Followers', value: session.token.profile.followers },
+    { label: 'Collaborators', value: session.token.profile.collaborators },
+    { label: 'Watchers', value: totalWatchers },
+    { label: 'Forkers', value: totalForkers },
+  ];
+
+  const totalStats = [
+    { label: 'Repos', value: session.token.profile.public_repos + session.token.profile.owned_private_repos },
+    { label: 'Commits', value: totalCommits },
+    { label: 'Stars', value: totalStars },
+    { label: 'Issues', value: totalIssues },
+  ];
+
   return (
-    <div className="grid md:grid-cols-2 py-6 md:pb-12">
+    <div className="flex flex-col sm:flex-row py-6 md:pb-12 mx-auto">
       <div
-        className="mx-auto w-full sm:w-72 font-bold mb-5 sm:mb-0"
+        className="mx-auto w-full sm:w-1/4 font-bold mb-5 sm:mb-0 sm:pr-8"
       >
-        <h5 className="text-4xl font-bolder text-blue-500 mb-3">
+        <h5 className="text-3xl font-bolder text-yellow-400 mb-3 border-b-2 border-yellow-400 pb-3">
           People
         </h5>
-        <h5 className="text-2xl font-semibold flex">
-          Followers
-          {' '}
-          <span className="ml-auto">{session.token.profile.followers}</span>
-        </h5>
-        <h5 className="text-2xl font-semibold flex">
-          Collaborators
-          {' '}
-          <span className="ml-auto">{session.token.profile.collaborators}</span>
-        </h5>
-        <h5 className="text-2xl font-semibold flex">
-          Watchers
-          {' '}
-          <span className="ml-auto">{totalWatchers}</span>
-        </h5>
 
-        <h5 className="text-2xl font-semibold flex">
-          Forkers
-          {' '}
-          <span className="ml-auto">{totalForkers}</span>
-        </h5>
+        <ul>
+          {peopleStats.map((stat) => (
+            <li
+              key={stat.label}
+              className="pb-1"
+            >
+              <h5 className="text-2xl font-semibold flex">
+                {stat.label}
+                {' '}
+                <span className="ml-auto">{stat.value}</span>
+              </h5>
+            </li>
+          ))}
+        </ul>
       </div>
+
       <div
-        className="mx-auto w-full sm:w-72 font-bold"
+        className="mx-auto w-full sm:w-1/4 sm:pr-8 font-bold mb-5"
       >
-        <h5 className="text-4xl font-bolder text-green-400 mb-3">
+        <h5 className="text-3xl font-bolder text-green-400 mb-3 border-b-2 border-green-400 pb-3">
           Total
         </h5>
-        <h5 className="text-2xl font-semibold flex">
-          Repos
-          {' '}
-          <span className="ml-auto">{session.token.profile.public_repos + session.token.profile.owned_private_repos}</span>
-        </h5>
-        <h5 className="text-2xl font-semibold flex">
-          Commits
-          {' '}
-          <span className="ml-auto">{totalCommits}</span>
-        </h5>
-        <h5 className="text-2xl font-semibold flex">
-          Stars
-          {' '}
-          <span className="ml-auto">{totalStars}</span>
-        </h5>
-        <h5 className="text-2xl font-semibold flex">
-          Issues
-          {' '}
-          <span className="ml-auto">{totalIssues}</span>
-        </h5>
 
+        <ul>
+          {totalStats.map((stat) => (
+            <li
+              key={stat.label}
+              className="pb-1"
+            >
+              <h5 className="text-2xl font-semibold flex">
+                {stat.label}
+                {' '}
+                <span className="ml-auto">{stat.value}</span>
+              </h5>
+            </li>
+          ))}
+        </ul>
       </div>
-      {/* <div
-        className="p-3 mx-auto w-72 font-bold"
-      >
-        <h5 className="text-3xl font-bolder text-yellow-400">
-          Discussion
-        </h5>
-        <h5 className="text-2xl font-semibold flex">
-          Followers:
-          {' '}
-          <span className="ml-auto">{session.token.profile.followers}</span>
-        </h5>
-        <h5 className="text-2xl font-semibold flex">
-          Collaborators:
-          {' '}
-          <span className="ml-auto">{session.token.profile.collaborators}</span>
-        </h5>
-        <h5 className="text-2xl font-semibold flex">
-          Public Repos:
-          {' '}
-          <span className="ml-auto">{session.token.profile.public_repos}</span>
-        </h5>
-        <h5 className="text-2xl font-semibold flex">
-          Total Stars:
-          {' '}
-          <span className="ml-auto">{totalStars}</span>
-        </h5>
-      </div> */}
+
+      <BadgeArea />
     </div>
   );
 }

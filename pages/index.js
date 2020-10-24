@@ -26,7 +26,7 @@ export default function Page() {
   return (
     <>
       <Head>
-        <title>Dev Accolades</title>
+        <title>Git Voyage</title>
       </Head>
 
       <MainNav />
@@ -40,13 +40,20 @@ export default function Page() {
       )}
 
       {(!session && !loading) && (
-        <div className="flex flex-col justify-center min-h-screen">
-          <h1 className="text-3xl text-center pb-3">Sign in to view your git accolades.</h1>
+        <div className="bg-galaxy flex flex-col justify-center min-h-screen">
+          <h1 className="text-4xl sm:text-5xl text-center mb-10 font-black">
+            Sign in to view
+            <br />
+            {' '}
+            your Git Voyage.
+          </h1>
+
           <button
             onClick={signIn}
-            className="bg-gray-700 p-3 mx-auto w-64"
+            className="bg-purple-600 p-3 mx-auto w-64 text-xl font-bold"
             type="button"
           >
+            <span className="mr-2">🚀</span>
             Sign in
           </button>
         </div>

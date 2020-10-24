@@ -4,7 +4,7 @@ import { useSession } from 'next-auth/client';
 import axios from 'axios';
 
 import useGithubStore from '../hooks/useGithubStore';
-import RepoCard from './RepoCard';
+import RepoCard from './repo-card/RepoCard';
 
 function RepoList() {
   const [session, loading] = useSession();
@@ -45,7 +45,7 @@ function RepoList() {
   const getTotalCommitCount = async (repos) => {
     let commitCount = 0;
 
-    await repos.forEach((repo) => {
+    repos.forEach((repo) => {
       axios.get(`${repo.commits_url.slice(0, -6)}?per_page=500`, {
         headers: {
           Authorization: `token ${session.token.account.accessToken}`,
@@ -85,7 +85,7 @@ function RepoList() {
 
   return (
     <>
-      <h2 className="text-yellow-500 text-4xl font-bold mb-4">Repos</h2>
+      <h2 className="text-purple-400 text-3xl font-bold mb-4">Public Repos</h2>
       <ul className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-4 gap-y-8">
         {filteredRepos.map((repo) => (
           <RepoCard

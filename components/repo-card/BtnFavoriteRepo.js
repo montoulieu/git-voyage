@@ -1,5 +1,5 @@
 import { HeartFillIcon } from '@primer/octicons-react';
-import useGithubStore from '../hooks/useGithubStore';
+import useGithubStore from '../../hooks/useGithubStore';
 
 function BtnFavoriteRepo(props) {
   const favorites = useGithubStore((state) => state.favorites);
@@ -26,7 +26,7 @@ function BtnFavoriteRepo(props) {
 
   return (
     <button
-      className={`btn-love ${favorites.includes(repoId) ? 'bg-red-500 text-white' : 'text-red-400'}`}
+      className={`btn-love ${favorites.includes(repoId) ? 'bg-red-500 text-white' : 'text-red-400 hover:bg-red-500 hover:text-white'}`}
       type="button"
       onClick={() => clickFavorite()}
     >
