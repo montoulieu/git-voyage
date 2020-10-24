@@ -3,25 +3,30 @@ import useGithubStore from '../../hooks/useGithubStore';
 
 function BtnFavoriteRepo(props) {
   const favorites = useGithubStore((state) => state.favorites);
+  const addToFavorites = useGithubStore((state) => state.addToFavorites);
   const setFavorites = useGithubStore((state) => state.setFavorites);
 
   const { repoId } = props;
 
   const clickFavorite = () => {
     // eslint-disable-next-line prefer-const
-    let favoriteRepos = [];
-
-    if (favorites.includes(repoId)) {
-      favoriteRepos = favorites.filter((e) => e !== repoId);
-      console.log(`Removing -${favoriteRepos}`);
-    } else {
-      favoriteRepos = favorites;
-      favoriteRepos.push(repoId);
-      console.log(`Adding -${favoriteRepos}`);
-    }
-    setFavorites(favoriteRepos);
+    console.log(repoId);
+    console.log('=======================');
     console.log(favorites);
-    window.localStorage.setItem('favoriteRepos', JSON.stringify(favoriteRepos));
+    console.log('=======================');
+    if (favorites.includes(repoId)) {
+      const filteredFavorites = favorites.filter((e) => e !== repoId);
+      console.log('Removing from favorites');
+      setFavorites(filteredFavorites);
+      console.log(filteredFavorites);
+    } else {
+      const modifiedFavorites = favorites;
+      modifiedFavorites.push(repoId);
+      console.log('Adding to favorites');
+      setFavorites(modifiedFavorites);
+    }
+    console.log(favorites);
+    window.localStorage.setItem('favoriteRepos', JSON.stringify(favorites));
   };
 
   return (

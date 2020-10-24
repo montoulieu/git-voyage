@@ -50,14 +50,14 @@ function BadgeArea() {
 
   return (
     <div
-      className="mx-auto w-full md:w-1/2 font-bold"
+      className="mx-auto w-full lg:w-1/2 font-bold"
     >
       <h5 className="text-3xl font-bolder text-orange-400 mb-3 border-b-2 border-orange-400 pb-3">
         Badges
       </h5>
       {filteredBadges.length > 0
         ? (
-          <div className="badges grid grid-cols-2 2xl:grid-cols-3 grid-row-2 gap-3">
+          <div className="badges grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-2 2xl:grid-cols-3 grid-row-2 gap-3">
             {filteredBadges.map((badge) => (
               <BadgeCard
                 key={badge.id}

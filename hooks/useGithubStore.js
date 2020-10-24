@@ -2,7 +2,6 @@ import create from 'zustand';
 
 const useGithubStore = create((set) => ({
   repos: [],
-  profile: {},
   favorites: [],
   totalStars: 0,
   totalCommits: 0,
@@ -11,6 +10,8 @@ const useGithubStore = create((set) => ({
   totalForkers: 0,
   setRepoData: (repos) => set(() => ({ repos })),
   setFavorites: (favorites) => set(() => ({ favorites })),
+  addToFavorites: (favorite) => set((state) => ({ favorites: [...state.favorites, favorite] })),
+  removeFromFavorites: (favorite) => set((state) => ({ favorites: state.favorites.filter((e) => e !== favorite) })),
   setTotalStars: (totalStars) => set(() => ({ totalStars })),
   setTotalIssues: (totalIssues) => set(() => ({ totalIssues })),
   setTotalWatchers: (totalWatchers) => set(() => ({ totalWatchers })),

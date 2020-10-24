@@ -85,8 +85,8 @@ function RepoList() {
 
   return (
     <>
-      <h2 className="text-purple-400 text-3xl font-bold mb-4">Public Repos</h2>
-      <ul className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-4 gap-y-8">
+      <h2 className="text-purple-400 text-3xl font-bold border-b-2 border-purple-400 pb-3 mb-4">Public Repos</h2>
+      <ul className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
         {filteredRepos.map((repo) => (
           <RepoCard
             repo={repo}

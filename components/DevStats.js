@@ -26,15 +26,15 @@ function DevStats() {
   ];
 
   return (
-    <div className="flex flex-col sm:flex-row py-6 md:pb-12 mx-auto">
+    <div className="flex flex-wrap py-6 md:pb-12 mx-auto">
       <div
-        className="mx-auto w-full sm:w-1/4 font-bold mb-5 sm:mb-0 sm:pr-8"
+        className="mx-auto w-full sm:w-1/2 lg:w-1/4 font-bold mb-5 sm:mb-0 sm:pr-8"
       >
-        <h5 className="text-3xl font-bolder text-yellow-400 mb-3 border-b-2 border-yellow-400 pb-3">
+        <h5 className="text-3xl font-bolder text-yellow-400 border-b-2 border-yellow-400 pb-3 mb-3">
           People
         </h5>
 
-        <ul>
+        <ul className="text-yellow-100">
           {peopleStats.map((stat) => (
             <li
               key={stat.label}
@@ -51,13 +51,13 @@ function DevStats() {
       </div>
 
       <div
-        className="mx-auto w-full sm:w-1/4 sm:pr-8 font-bold mb-5"
+        className="mx-auto w-full sm:w-1/2 lg:w-1/4 sm:pr-8 font-bold mb-5"
       >
         <h5 className="text-3xl font-bolder text-green-400 mb-3 border-b-2 border-green-400 pb-3">
           Total
         </h5>
 
-        <ul>
+        <ul className="text-green-100">
           {totalStats.map((stat) => (
             <li
               key={stat.label}

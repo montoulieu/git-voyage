@@ -10,7 +10,7 @@ function MainNav() {
   };
 
   return (
-    <header className="fixed w-full bg-gray-900 border-b border-gray-800 text-gray-200 font-light p-3 z-10 shadow-xl">
+    <header className="fixed w-full bg-gray-900 bg-opacity-90 border-b border-gray-800 text-gray-200 font-light p-3 z-10 shadow-xl">
       <div className="container flex items-center mx-auto">
         <div className="text-3xl sm:text-4xl font-black text-purple-400 text-shadow">
           Git Voyage
