@@ -10,9 +10,9 @@ function MainNav() {
   };
 
   return (
-    <header className="fixed w-full bg-gray-900 bg-opacity-90 border-b border-gray-800 text-gray-200 font-light p-3 z-10 shadow-xl">
+    <header className="absolute w-full text-purple-300 font-light z-10 shadow-xl px-3 pt-3 sm:pt-5 sm:px-0">
       <div className="container flex items-center mx-auto">
-        <div className="text-3xl sm:text-4xl font-black text-purple-400 text-shadow">
+        <div className="text-3xl sm:text-4xl font-extrabold text-purple-400 text-shadow">
           Git Voyage
         </div>
         {session && (
@@ -57,7 +57,7 @@ function MainNav() {
                 >
                   <img
                     src={session.user.image}
-                    className="h-12 rounded-full border border-gray-700 shadow"
+                    className="h-12 rounded-full shadow"
                     alt="GitHub Profile"
                   />
                 </a>

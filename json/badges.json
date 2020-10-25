@@ -10,8 +10,18 @@
     }
   },
   {
-    "id": "first-10-followers",
-    "label": "First 10 Followers",
+    "id": "fifth-follower",
+    "label": "Fifth Follower",
+    "emoji": "🤚",
+    "requirement": {
+      "type": "session",
+      "path": "token.profile.followers",
+      "value": 5
+    }
+  },
+  {
+    "id": "tenth-follower",
+    "label": "Tenth Follower",
     "emoji": "🙌",
     "requirement": {
       "type": "session",
@@ -30,8 +40,8 @@
     }
   },
   {
-    "id": "first-5-collab",
-    "label": "First 5 Collaborators",
+    "id": "fifth-collab",
+    "label": "Fifth Collaborator",
     "emoji": "🥂",
     "requirement": {
       "type": "session",

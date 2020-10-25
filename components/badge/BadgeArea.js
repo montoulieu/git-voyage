@@ -12,7 +12,11 @@ function BadgeArea() {
   const totalCommits = useGithubStore((state) => state.totalCommits);
 
   const checkBadgesEarned = () => {
-    badgesJSON.forEach((badge) => {
+    // eslint-disable-next-line prefer-const
+    let sortedBadges = badgesJSON;
+    sortedBadges.sort((a, b) => b.requirement.value - a.requirement.value);
+
+    sortedBadges.forEach((badge) => {
       let shouldAdd;
 
       if (badge.requirement.type === 'session') {
@@ -50,28 +54,30 @@ function BadgeArea() {
 
   return (
     <div
-      className="mx-auto w-full lg:w-1/2 font-bold"
+      className="mx-auto w-full lg:w-1/2 font-bold overflow-hidden pt-5 lg:pt-0"
     >
-      <h5 className="text-3xl font-bolder text-orange-400 mb-3 border-b-2 border-orange-400 pb-3">
+      <h5 className="text-3xl font-bolder text-blue-400 mb-4">
         Badges
       </h5>
-      {filteredBadges.length > 0
-        ? (
-          <div className="badges grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-2 2xl:grid-cols-3 grid-row-2 gap-3">
-            {filteredBadges.map((badge) => (
-              <BadgeCard
-                key={badge.id}
-                emoji={badge.emoji}
-                label={badge.label}
-              />
-            ))}
-          </div>
-        )
-        : (
-          <span className="text-2xl">
-            No badges earned yet.
-          </span>
-        )}
+      <div className="badge-container h-full p-5 pl-0 border-t-4 border-r-4 rounded-tr-3xl border-blue-400">
+        {badges.length > 0
+          ? (
+            <div className="badges grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-2 2xl:grid-cols-3 grid-row-2 gap-3">
+              {badges.map((badge) => (
+                <BadgeCard
+                  key={badge.id}
+                  emoji={badge.emoji}
+                  label={badge.label}
+                />
+              ))}
+            </div>
+          )
+          : (
+            <span className="text-2xl">
+              No badges earned yet.
+            </span>
+          )}
+      </div>
     </div>
   );
 }

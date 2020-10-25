@@ -17,9 +17,9 @@ body {
 }
 
 .btn-love {
-  @apply absolute right-0 top-0;
+  @apply absolute top-0 right-0;
   @apply p-2 px-3;
-  @apply border border-red-400 rounded-3xl rounded-tl-none rounded-br-none;
+  @apply border-2 border-red-400 rounded-3xl rounded-tl-none rounded-br-none;
   @apply flex items-center justify-center;
   @apply text-xs;
 }
@@ -33,4 +33,16 @@ body {
 
 .text-shadow {
   text-shadow: 0 3px 4px rgba(0,0,0,0.35);
+}
+
+.btn-group-url-settings {
+  @apply absolute left-0 bottom-0 text-center mt-auto ml-auto font-bold flex;
+}
+
+.btn-group-stars-forks {
+  @apply absolute right-0 bottom-0 text-center mt-auto ml-auto font-bold flex flex-col;
+}
+
+.badge-card {
+
 }

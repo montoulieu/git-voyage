@@ -1,4 +1,7 @@
 import { useSession } from 'next-auth/client';
+import {
+  PeopleIcon, SmileyIcon, EyeIcon, RepoForkedIcon, RepoIcon, CommitIcon, StarIcon, IssueOpenedIcon,
+} from '@primer/octicons-react';
 import useGithubStore from '../hooks/useGithubStore';
 import BadgeArea from './badge/BadgeArea';
 
@@ -12,35 +15,68 @@ function DevStats() {
   const totalCommits = useGithubStore((state) => state.totalCommits);
 
   const peopleStats = [
-    { label: 'Followers', value: session.token.profile.followers },
-    { label: 'Collaborators', value: session.token.profile.collaborators },
-    { label: 'Watchers', value: totalWatchers },
-    { label: 'Forkers', value: totalForkers },
+    {
+      label: 'Followers',
+      value: session.token.profile.followers,
+      icon: <PeopleIcon />,
+    },
+    {
+      label: 'Collaborators',
+      value: session.token.profile.collaborators,
+      icon: <SmileyIcon />,
+    },
+    {
+      label: 'Watchers',
+      value: totalWatchers,
+      icon: <EyeIcon />,
+    },
+    {
+      label: 'Forkers',
+      value: totalForkers,
+      icon: <RepoForkedIcon />,
+    },
   ];
 
   const totalStats = [
-    { label: 'Repos', value: session.token.profile.public_repos + session.token.profile.owned_private_repos },
-    { label: 'Commits', value: totalCommits },
-    { label: 'Stars', value: totalStars },
-    { label: 'Issues', value: totalIssues },
+    {
+      label: 'Repos',
+      value: session.token.profile.public_repos + session.token.profile.owned_private_repos,
+      icon: <RepoIcon />,
+    },
+    {
+      label: 'Commits',
+      value: totalCommits,
+      icon: <CommitIcon />,
+    },
+    {
+      label: 'Stars',
+      value: totalStars,
+      icon: <StarIcon />,
+    },
+    {
+      label: 'Issues',
+      value: totalIssues,
+      icon: <IssueOpenedIcon />,
+    },
   ];
 
   return (
-    <div className="flex flex-wrap py-6 md:pb-12 mx-auto">
+    <div className="flex flex-wrap items-stretch py-6 mx-auto">
       <div
-        className="mx-auto w-full sm:w-1/2 lg:w-1/4 font-bold mb-5 sm:mb-0 sm:pr-8"
+        className="mx-auto w-full sm:w-1/2 lg:w-1/4 font-bold sm:pr-8"
       >
-        <h5 className="text-3xl font-bolder text-yellow-400 border-b-2 border-yellow-400 pb-3 mb-3">
+        <h5 className="text-3xl font-bolder text-yellow-400 mb-4">
           People
         </h5>
 
-        <ul className="text-yellow-100">
-          {peopleStats.map((stat) => (
+        <ul className="text-yellow-100 py-5 pr-5 border-t-4 border-r-4 rounded-tr-3xl border-yellow-400">
+          {peopleStats.map((stat, index) => (
             <li
               key={stat.label}
-              className="pb-1"
+              className={index !== totalStats.length - 1 ? 'pb-3' : ''}
             >
               <h5 className="text-2xl font-semibold flex">
+                <span className="flex items-center transform scale-125 mr-4">{stat.icon}</span>
                 {stat.label}
                 {' '}
                 <span className="ml-auto">{stat.value}</span>
@@ -51,19 +87,20 @@ function DevStats() {
       </div>
 
       <div
-        className="mx-auto w-full sm:w-1/2 lg:w-1/4 sm:pr-8 font-bold mb-5"
+        className="mx-auto w-full sm:w-1/2 lg:w-1/4 lg:pr-8 font-bold h-full"
       >
-        <h5 className="text-3xl font-bolder text-green-400 mb-3 border-b-2 border-green-400 pb-3">
+        <h5 className="text-3xl font-bolder text-green-400 mb-4">
           Total
         </h5>
 
-        <ul className="text-green-100">
-          {totalStats.map((stat) => (
+        <ul className="text-green-100 py-5 pr-5 border-t-4 border-r-4 rounded-tr-3xl border-green-400 h-full">
+          {totalStats.map((stat, index) => (
             <li
               key={stat.label}
-              className="pb-1"
+              className={index !== totalStats.length - 1 ? 'pb-3' : ''}
             >
               <h5 className="text-2xl font-semibold flex">
+                <span className="flex items-center transform scale-125 mr-3">{stat.icon}</span>
                 {stat.label}
                 {' '}
                 <span className="ml-auto">{stat.value}</span>
