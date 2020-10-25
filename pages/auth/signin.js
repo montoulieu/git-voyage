@@ -19,7 +19,7 @@ export default function SignIn({ providers }) {
             Sign in with
             {' '}
             <LogoGithubIcon
-              className="ml-4 transform scale-150"
+              className="ml-4 transform scale-150 mr-2"
             />
             {/* {provider.name} */}
           </button>

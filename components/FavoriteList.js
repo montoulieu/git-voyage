@@ -15,7 +15,7 @@ function FavoriteList() {
   return (
     <>
       <h2 className="text-red-500 text-3xl font-bold mb-4">Favorite Repos</h2>
-      <ul className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 mb-8 py-5 pr-5 border-t-4 border-r-4 rounded-tr-3xl border-red-500">
+      <ul className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 mb-8 py-5 pr-5 border-t-4 border-r-4 rounded-tr-3xl border-red-500">
         {filteredRepos.map((repo) => (
           <RepoCard
             repo={repo}
