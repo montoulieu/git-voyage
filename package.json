@@ -11,13 +11,12 @@
   "dependencies": {
     "@primer/octicons-react": "^11.0.0",
     "axios": "^0.20.0",
-    "framer-motion": "^2.9.4",
     "next": "^9.5.5",
     "next-auth": "^3.1.0",
     "next-on-netlify": "^2.5.1",
     "postcss-nested": "^4.2.3",
-    "react": "^17.0.1",
-    "react-dom": "^17.0.1",
+    "react": "^17.0.0",
+    "react-dom": "^17.0.0",
     "tailwindcss": "^2.0.0-alpha.1",
     "zustand": "^3.1.3"
   },

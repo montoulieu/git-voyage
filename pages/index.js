@@ -1,22 +1,15 @@
-import { providers, signIn, useSession } from 'next-auth/client';
+import { signIn, useSession } from 'next-auth/client';
 import { useEffect } from 'react';
-import { useRouter } from 'next/router';
-
 // import Link from 'next/link';
 import Head from 'next/head';
-import {
-  LogoGithubIcon,
-} from '@primer/octicons-react';
 import RepoList from '../components/RepoList';
 import DevStats from '../components/DevStats';
 import FavoriteList from '../components/FavoriteList';
 import MainNav from '../components/MainNav';
 import useGithubStore from '../hooks/useGithubStore';
 
-export default function Page({ providers }) {
+export default function Page() {
   const [session, loading] = useSession();
-  const router = useRouter();
-
   const setFavorites = useGithubStore((state) => state.setFavorites);
 
   const loadFavoriteRepos = () => {
@@ -31,7 +24,7 @@ export default function Page({ providers }) {
   }, []);
 
   return (
-    <div className={session ? 'logged-in' : 'logged-out'}>
+    <>
       <Head>
         <title>Git Voyage</title>
       </Head>
@@ -54,22 +47,15 @@ export default function Page({ providers }) {
             {' '}
             your Git Voyage.
           </h1>
-          {Object.values(providers).map((provider) => (
-            <div key={provider.name}>
-              <button
-                onClick={() => signIn(provider.id, { callbackUrl: router.query.callbackUrl })}
-                type="button"
-                className="bg-purple-600 p-3 mx-auto w-64 flex items-center text-xl justify-center"
-              >
-                Sign in with
-                {' '}
-                <LogoGithubIcon
-                  className="ml-4 transform scale-150 mr-2"
-                />
-                {/* {provider.name} */}
-              </button>
-            </div>
-          ))}
+
+          <button
+            onClick={signIn}
+            className="bg-purple-600 p-3 mx-auto w-64 text-xl font-bold"
+            type="button"
+          >
+            <span className="mr-2">🚀</span>
+            <span className="mr-2">Sign in</span>
+          </button>
         </div>
       )}
 
@@ -93,10 +79,6 @@ export default function Page({ providers }) {
           2020
         </div>
       </footer>
-    </div>
+    </>
   );
 }
-
-Page.getInitialProps = async (context) => ({
-  providers: await providers(context),
-});

@@ -3,9 +3,11 @@
 @tailwind components;
 
 @tailwind utilities;
-#__next {
-  @apply min-h-screen
-}
+/* #__next {
+  @media screen and (max-width: 768px) {
+    @apply px-3
+  }
+} */
 body {
   @apply bg-black text-white
 }
@@ -48,10 +50,4 @@ body {
 .badge-container {
   max-height: 13rem;
   @apply overflow-scroll;
-}
-
-.logged-out {
-  footer {
-    @apply fixed bottom-0 inset-x-0;
-  }
 }
