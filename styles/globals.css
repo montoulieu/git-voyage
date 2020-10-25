@@ -43,6 +43,7 @@ body {
   @apply absolute right-0 bottom-0 text-center mt-auto ml-auto font-bold flex flex-col;
 }
 
-.badge-card {
-
+.badge-container {
+  max-height: 13rem;
+  @apply overflow-scroll;
 }

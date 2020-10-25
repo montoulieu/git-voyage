@@ -57,5 +57,50 @@
       "type": "commit",
       "value": 1
     }
+  },
+  {
+    "id": "666-commit",
+    "label": "666th Commit",
+    "emoji": "🤘",
+    "requirement": {
+      "type": "commit",
+      "value": 100
+    }
+  },
+  {
+    "id": "100-commit",
+    "label": "100 Commits",
+    "emoji": "💯",
+    "requirement": {
+      "type": "commit",
+      "value": 100
+    }
+  },
+  {
+    "id": "first-star",
+    "label": "First Star",
+    "emoji": "⭐️",
+    "requirement": {
+      "type": "star",
+      "value": 1
+    }
+  },
+  {
+    "id": "tenth-star",
+    "label": "Tenth Star",
+    "emoji": "🌟",
+    "requirement": {
+      "type": "star",
+      "value": 10
+    }
+  },
+  {
+    "id": "25-star",
+    "label": "25 Stars",
+    "emoji": "💫",
+    "requirement": {
+      "type": "star",
+      "value": 25
+    }
   }
 ]

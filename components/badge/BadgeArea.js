@@ -9,6 +9,8 @@ function BadgeArea() {
   const [session, loading] = useSession();
   const badges = useBadgeStore((state) => state.badges);
   const addToBadges = useBadgeStore((state) => state.addToBadges);
+  const loaded = useGithubStore((state) => state.loaded);
+  const totalStars = useGithubStore((state) => state.totalStars);
   const totalCommits = useGithubStore((state) => state.totalCommits);
 
   const checkBadgesEarned = () => {
@@ -33,6 +35,13 @@ function BadgeArea() {
         }
       }
 
+      if (badge.requirement.type === 'star') {
+        console.log(totalStars);
+        if (totalStars >= badge.requirement.value) {
+          shouldAdd = true;
+        }
+      }
+
       if (shouldAdd) {
         addToBadges({
           id: badge.id,
@@ -47,10 +56,10 @@ function BadgeArea() {
   const filteredBadges = badges.sort((a, b) => a.requirementValue < b.requirementValue);
 
   useEffect(() => {
-    if (badges.length === 0) {
+    if (badges.length === 0 && loaded) {
       checkBadgesEarned();
     }
-  }, []);
+  }, [loaded]);
 
   return (
     <div

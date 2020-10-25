@@ -11,7 +11,7 @@ function RepoCard(props) {
 
   return (
     <li
-      className="flex bg-gray-800 hover:bg-gray-700 transition-colors duration-500 rounded-3xl shadow-lg p-5 relative"
+      className="flex bg-gray-800 hover:bg-gray-700 transition-colors duration-500 rounded-3xl shadow-lg p-7 relative"
     >
       <a
         href={repo.html_url}

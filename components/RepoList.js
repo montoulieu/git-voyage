@@ -17,45 +17,47 @@ function RepoList() {
   const setTotalWatchers = useGithubStore((state) => state.setTotalWatchers);
   const setTotalForkers = useGithubStore((state) => state.setTotalForkers);
   const addToTotalCommits = useGithubStore((state) => state.addToTotalCommits);
+  const setGithubDataLoaded = useGithubStore((state) => state.setGithubDataLoaded);
 
   const filteredRepos = repos
     .sort((a, b) => a.stargazers_count < b.stargazers_count)
     .filter(repo => !favorites.includes(repo.node_id) );
     // .splice(0, 25);
 
-  const getTotalStarCount = (repos) => {
+  const getGithubTotals = async (repos) => {
     let starCount = 0;
     let issueCount = 0;
     let watchersCount = 0;
     let forkersCount = 0;
-
+    let promises = [];
+    // let commitCount = 0;
+    console.log('before')
     repos.forEach((repo) => {
       starCount += repo.stargazers_count;
       issueCount += repo.open_issues;
       watchersCount += repo.watchers;
-      forkersCount += repo.forks
+      forkersCount += repo.forks;
+
+      if (totalCommits === 0) {
+        axios.get(`${repo.commits_url.slice(0, -6)}?per_page=500`, {
+          headers: {
+            Authorization: `token ${session.token.account.accessToken}`,
+          },
+        })
+          .then((response) => {
+            addToTotalCommits(response.data.length);
+          });
+      }
     });
 
     setTotalStars(starCount);
     setTotalIssues(issueCount);
     setTotalWatchers(watchersCount);
     setTotalForkers(forkersCount);
-  };
+    setInterval(() => {
+      setGithubDataLoaded(true);
+    }, 100)
 
-  const getTotalCommitCount = async (repos) => {
-    let commitCount = 0;
-
-    repos.forEach((repo) => {
-      axios.get(`${repo.commits_url.slice(0, -6)}?per_page=500`, {
-        headers: {
-          Authorization: `token ${session.token.account.accessToken}`,
-        },
-      })
-        .then((response) => {
-          commitCount += response.data.length;
-          addToTotalCommits(response.data.length);
-        });
-    });
   };
 
   const getRepos = () => {
@@ -66,10 +68,8 @@ function RepoList() {
     })
       .then((response) => {
         setRepoData(response.data);
-        getTotalStarCount(response.data);
-        if (totalCommits === 0) {
-          getTotalCommitCount(response.data);
-        }
+        getGithubTotals(response.data);
+
       }).catch((error) => {
         console.log('Error fetching user', error);
       });

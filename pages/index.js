@@ -32,7 +32,7 @@ export default function Page() {
       <MainNav />
 
       {(session && !loading) && (
-        <main className="container mx-auto px-3 sm:px-0 pt-10 sm:pt-20">
+        <main className="container mx-auto px-3 sm:px-0 pt-12 sm:pt-20">
           <DevStats />
           <FavoriteList />
           <RepoList />

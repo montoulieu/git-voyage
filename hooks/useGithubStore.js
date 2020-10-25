@@ -8,6 +8,7 @@ const useGithubStore = create((set) => ({
   totalIssues: 0,
   totalWatchers: 0,
   totalForkers: 0,
+  loaded: false,
   setRepoData: (repos) => set(() => ({ repos })),
   setFavorites: (favorites) => set(() => ({ favorites })),
   addToFavorites: (favorite) => set((state) => ({ favorites: [...state.favorites, favorite] })),
@@ -17,6 +18,7 @@ const useGithubStore = create((set) => ({
   setTotalWatchers: (totalWatchers) => set(() => ({ totalWatchers })),
   setTotalForkers: (totalForkers) => set(() => ({ totalForkers })),
   addToTotalCommits: (commitCount) => set((state) => ({ totalCommits: state.totalCommits += commitCount })),
+  setGithubDataLoaded: (status) => set((state) => ({ loaded: status })),
   // clearProfileData: () => set({ profile: [] })
 }));
 
