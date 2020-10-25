@@ -10,8 +10,8 @@ function MainNav() {
   };
 
   return (
-    <header className="absolute w-full text-purple-300 font-light z-10 shadow-xl pt-3 sm:pt-5">
-      <div className="container flex items-center mx-auto px-3">
+    <header className="absolute w-full text-purple-300 font-light z-10 shadow-xl">
+      <div className="container flex items-center mx-auto px-3 h-20 ">
         <div className="text-3xl sm:text-4xl font-extrabold text-purple-400 text-shadow">
           Git Voyage
         </div>
@@ -64,21 +64,6 @@ function MainNav() {
             </div>
           </>
         )}
-        {!session
-          && (
-          <div className="ml-auto text-right">
-            Not signed in
-            {' '}
-            <br />
-            <button
-              onClick={signIn}
-              type="button"
-            >
-              Sign in
-
-            </button>
-          </div>
-          )}
       </div>
     </header>
   );

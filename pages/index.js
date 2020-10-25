@@ -24,7 +24,7 @@ export default function Page() {
   }, []);
 
   return (
-    <>
+    <div className={session ? 'logged-in' : 'logged-out'}>
       <Head>
         <title>Git Voyage</title>
       </Head>
@@ -79,6 +79,6 @@ export default function Page() {
           2020
         </div>
       </footer>
-    </>
+    </div>
   );
 }
