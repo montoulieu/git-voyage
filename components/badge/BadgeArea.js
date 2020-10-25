@@ -36,7 +36,6 @@ function BadgeArea() {
       }
 
       if (badge.requirement.type === 'star') {
-        console.log(totalStars);
         if (totalStars >= badge.requirement.value) {
           shouldAdd = true;
         }

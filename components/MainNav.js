@@ -10,7 +10,7 @@ function MainNav() {
   };
 
   return (
-    <header className="absolute w-full text-purple-300 font-light z-10 shadow-xl px-3 pt-3 sm:pt-5 sm:px-0">
+    <header className="absolute w-full text-purple-300 font-light z-10 shadow-xl px-3 pt-3 sm:pt-5 md:px-0">
       <div className="container flex items-center mx-auto">
         <div className="text-3xl sm:text-4xl font-extrabold text-purple-400 text-shadow">
           Git Voyage
@@ -46,7 +46,6 @@ function MainNav() {
                   type="button"
                 >
                   Sign out
-
                 </button>
               </div>
               <div className="ml-3">

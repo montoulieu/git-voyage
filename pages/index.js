@@ -32,7 +32,7 @@ export default function Page() {
       <MainNav />
 
       {(session && !loading) && (
-        <main className="container mx-auto px-3 sm:px-0 pt-12 sm:pt-20">
+        <main className="container mx-auto px-3 md:px-0 pt-12 sm:pt-20">
           <DevStats />
           <FavoriteList />
           <RepoList />
@@ -58,6 +58,27 @@ export default function Page() {
           </button>
         </div>
       )}
+
+      <footer className="container mx-auto flex py-6 text-sm items-center">
+        <div className="mr-auto">
+          Created by
+          {' '}
+          <a
+            href="https://linkent.montoulieu.dev"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-bold hover:underline text-purple-400"
+          >
+            Pieter Montoulieu
+          </a>
+          <br />
+          {' '}
+          with Next.js, Tailwind and Netlify.
+        </div>
+        <div className="font-black text-purple-400 tracking-wider">
+          2020
+        </div>
+      </footer>
     </>
   );
 }

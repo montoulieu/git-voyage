@@ -31,7 +31,6 @@ function RepoList() {
     let forkersCount = 0;
     let promises = [];
     // let commitCount = 0;
-    console.log('before')
     repos.forEach((repo) => {
       starCount += repo.stargazers_count;
       issueCount += repo.open_issues;
