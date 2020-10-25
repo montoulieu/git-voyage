@@ -7,7 +7,7 @@ function FavoriteList() {
   const favorites = useGithubStore((state) => state.favorites);
 
   const filteredRepos = repos
-    .sort((a, b) => a.stargazers_count < b.stargazers_count)
+    .sort((a, b) => b.stargazers_count - a.stargazers_count)
     .filter((repo) => favorites.includes(repo.node_id));
 
   if (filteredRepos.length === 0) { return <></>; }

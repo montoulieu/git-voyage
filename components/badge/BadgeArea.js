@@ -69,7 +69,7 @@ function BadgeArea() {
         Badges
       </h5>
       <div className="badge-container h-full p-5 pl-0 border-t-4 border-r-4 rounded-tr-3xl border-blue-400">
-        {badges.length > 0
+        {(badges.length > 0 && loaded)
           ? (
             <div className="badges grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-2 2xl:grid-cols-3 grid-row-2 gap-3">
               {badges.map((badge) => (
@@ -82,8 +82,8 @@ function BadgeArea() {
             </div>
           )
           : (
-            <span className="text-2xl">
-              No badges earned yet.
+            <span className="text-2xl text-blue-200">
+              {loaded ? 'No badges earned yet.' : 'Loading...'}
             </span>
           )}
       </div>

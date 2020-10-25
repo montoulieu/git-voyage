@@ -59,21 +59,21 @@
     }
   },
   {
-    "id": "666-commit",
-    "label": "666th Commit",
-    "emoji": "🤘",
-    "requirement": {
-      "type": "commit",
-      "value": 100
-    }
-  },
-  {
     "id": "100-commit",
     "label": "100 Commits",
     "emoji": "💯",
     "requirement": {
       "type": "commit",
       "value": 100
+    }
+  },
+  {
+    "id": "666-commit",
+    "label": "666th Commit",
+    "emoji": "🤘",
+    "requirement": {
+      "type": "commit",
+      "value": 666
     }
   },
   {

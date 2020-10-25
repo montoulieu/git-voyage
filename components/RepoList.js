@@ -20,7 +20,7 @@ function RepoList() {
   const setGithubDataLoaded = useGithubStore((state) => state.setGithubDataLoaded);
 
   const filteredRepos = repos
-    .sort((a, b) => a.stargazers_count < b.stargazers_count)
+    .sort((a, b) => b.stargazers_count - a.stargazers_count)
     .filter(repo => !favorites.includes(repo.node_id) );
     // .splice(0, 25);
 
@@ -56,7 +56,7 @@ function RepoList() {
     setTotalForkers(forkersCount);
     setInterval(() => {
       setGithubDataLoaded(true);
-    }, 100)
+    }, 1000)
 
   };
 
