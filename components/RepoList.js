@@ -60,7 +60,7 @@ function RepoList() {
   };
 
   const getRepos = () => {
-    axios.get(`${session.token.profile.repos_url}?per_page=500`, {
+    axios.get(`https://api.github.com/user/repos?per_page=500&affiliation=owner`, {
       headers: {
         Authorization: `token ${session.token.account.accessToken}`,
       },

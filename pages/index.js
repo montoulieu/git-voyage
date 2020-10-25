@@ -32,7 +32,7 @@ export default function Page() {
       <MainNav />
 
       {(session && !loading) && (
-        <main className="container mx-auto px-3 md:px-0 pt-12 sm:pt-20">
+        <main className="container mx-auto px-3 pt-12 sm:pt-20">
           <DevStats />
           <FavoriteList />
           <RepoList />
@@ -59,7 +59,7 @@ export default function Page() {
         </div>
       )}
 
-      <footer className="container mx-auto flex py-6 text-sm items-center">
+      <footer className="container mx-auto flex py-6 px-3 text-sm items-center">
         <div className="mr-auto">
           Created by
           {' '}

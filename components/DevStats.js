@@ -39,12 +39,12 @@ function DevStats() {
 
   const totalStats = [
     {
-      label: 'Repos',
-      value: session.token.profile.public_repos + session.token.profile.owned_private_repos,
+      label: 'Public Repos',
+      value: session.token.profile.public_repos,
       icon: <RepoIcon />,
     },
     {
-      label: 'Commits',
+      label: 'Public Commits',
       value: totalCommits,
       icon: <CommitIcon />,
     },
@@ -63,7 +63,7 @@ function DevStats() {
   return (
     <div className="flex flex-wrap items-stretch py-6 mx-auto">
       <div
-        className="mx-auto w-full sm:w-1/2 lg:w-1/4 font-bold sm:pr-8"
+        className="mx-auto w-full sm:w-1/2 xl:w-1/4 font-bold sm:pr-8"
       >
         <h5 className="text-3xl font-bolder text-yellow-400 mb-4">
           People
@@ -87,7 +87,7 @@ function DevStats() {
       </div>
 
       <div
-        className="mx-auto w-full sm:w-1/2 lg:w-1/4 lg:pr-8 font-bold h-full"
+        className="mx-auto w-full sm:w-1/2 xl:w-1/4 xl:pr-8 font-bold h-full"
       >
         <h5 className="text-3xl font-bolder text-green-400 mb-4">
           Total
