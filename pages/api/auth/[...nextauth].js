@@ -25,7 +25,7 @@ const options = {
     },
   },
   pages: {
-    signIn: '/auth/signin',
+    signIn: '/',
   },
   session: {
     jwt: true,

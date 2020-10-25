@@ -34,6 +34,18 @@ export default function Page({ providers }) {
     <div className={session ? 'logged-in' : 'logged-out'}>
       <Head>
         <title>Git Voyage</title>
+        <meta
+          name="apple-mobile-web-app-capable"
+          content="yes"
+        />
+        <meta
+          name="apple-mobile-web-app-status-bar-style"
+          content="default"
+        />
+        <meta
+          name="apple-mobile-web-app-title"
+          content="PWA App"
+        />
       </Head>
 
       <MainNav />
