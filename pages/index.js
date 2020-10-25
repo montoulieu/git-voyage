@@ -35,16 +35,28 @@ export default function Page({ providers }) {
       <Head>
         <title>Git Voyage</title>
         <meta
+          name="application-name"
+          content="Git Voyage"
+        />
+        <meta
+          name="mobile-web-app-capable"
+          content="yes"
+        />
+        <meta
+          name="theme-color"
+          content="#a855f7"
+        />
+        <meta
           name="apple-mobile-web-app-capable"
           content="yes"
         />
         <meta
           name="apple-mobile-web-app-status-bar-style"
-          content="default"
+          content="black-translucent"
         />
         <meta
           name="apple-mobile-web-app-title"
-          content="PWA App"
+          content="Git Voyage"
         />
       </Head>
 
